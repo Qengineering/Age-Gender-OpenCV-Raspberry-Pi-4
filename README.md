@@ -1,5 +1,4 @@
 # Age Gender Raspberry Pi 4
-# YoloV5 Raspberry Pi 4
 ![output image]( https://qengineering.eu/images/AgeGender3.jpg )
 ## Age and gender estimation with the OpenCV framework. <br/>
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)<br/><br/>
@@ -9,7 +8,7 @@ Special made for a bare Raspberry Pi 4, see [Q-engineering deep learning example
 ------------
 
 ## Benchmark.
-RPi 4 64-OS 1950 MHz
+RPi 4 64-OS 1950 MHz <br/>
 FPS = 1/(0.2 * Faces + 0.157)
 
 ------------
@@ -41,12 +40,13 @@ opencv_face_detector.pbtxt <br/>
 opencv_face_detector_uint8.pb <br/>
 gender_deploy.prototxt <br/>
 age_deploy.prototxt <br/>
+do not forget to download the caffe models!
 
 ------------
 
 ## Running the app.
-Download [age_deploy.caffemodel](https://drive.google.com/file/d/1pNDFo7WBcf4fo5DefGEbM01TJP8_z5H5/view?usp=sharing)
-Download [gender_deploy.caffemodel](https://drive.google.com/file/d/1X8_2hTEUGculDA9gt_pIyTV31CNew8_b/view?usp=sharing)
+Download [age_deploy.caffemodel](https://drive.google.com/file/d/1pNDFo7WBcf4fo5DefGEbM01TJP8_z5H5/view?usp=sharing) <br/>
+Download [gender_deploy.caffemodel](https://drive.google.com/file/d/1X8_2hTEUGculDA9gt_pIyTV31CNew8_b/view?usp=sharing) <br/>
 To run the application load the project file YoloV5.cbp in Code::Blocks.<br/> 
 Next, follow the instructions at [Hands-On](https://qengineering.eu/deep-learning-examples-on-raspberry-32-64-os.html#HandsOn).<br/><br/>
 Many thanks to [GilLevi](https://github.com/GilLevi/AgeGenderDeepLearning) <br/>
