@@ -39,8 +39,8 @@ AgeGender.cpp <br/>
 opencv_face_detector.pbtxt <br/>
 opencv_face_detector_uint8.pb <br/>
 gender_deploy.prototxt <br/>
-age_deploy.prototxt <br/>
-do not forget to download the caffe models!
+age_deploy.prototxt <br/><br/>
+Do **not forget** to download the caffe models!
 
 ------------
 
