@@ -83,27 +83,29 @@ int main(int argc, char** argv)
     else{
         for (auto it = begin(bboxes); it != end(bboxes); ++it) {
             Rect rec(it->at(0) - padding, it->at(1) - padding, it->at(2) - it->at(0) + 2*padding, it->at(3) - it->at(1) + 2*padding);
-            Mat face = frame(rec); // take the ROI of box on the frame
+            if(rec.x>=0 && rec.y>=0 && (rec.width+rec.x)<=frame.cols && (rec.height+rec.y)<=frame.rows){
+                Mat face = frame(rec); // take the ROI of box on the frame
 
-            Mat blob = blobFromImage(face, 1, Size(227, 227), MODEL_MEAN_VALUES, false);
+                Mat blob = blobFromImage(face, 1, Size(227, 227), MODEL_MEAN_VALUES, false);
 
-            genderNet.setInput(blob);
-            vector<float> genderPreds = genderNet.forward();
-            // find max element index (distance function does the argmax() work in C++)
-            int max_index_gender = std::distance(genderPreds.begin(), max_element(genderPreds.begin(), genderPreds.end()));
-            string gender = genderList[max_index_gender];
+                genderNet.setInput(blob);
+                vector<float> genderPreds = genderNet.forward();
+                // find max element index (distance function does the argmax() work in C++)
+                int max_index_gender = std::distance(genderPreds.begin(), max_element(genderPreds.begin(), genderPreds.end()));
+                string gender = genderList[max_index_gender];
 
 
-            ageNet.setInput(blob);
-            vector<float> agePreds = ageNet.forward();
-            // finding maximum indicd in the age_preds vector
-            int max_indice_age = std::distance(agePreds.begin(), max_element(agePreds.begin(), agePreds.end()));
-            string age = ageList[max_indice_age];
+                ageNet.setInput(blob);
+                vector<float> agePreds = ageNet.forward();
+                // finding maximum indicd in the age_preds vector
+                int max_indice_age = std::distance(agePreds.begin(), max_element(agePreds.begin(), agePreds.end()));
+                string age = ageList[max_indice_age];
 
-            cout << "Gender: " << gender << "  Age: " << age << endl;
+                cout << "Gender: " << gender << "  Age: " << age << endl;
 
-            string label = gender + ", " + age; // label
-            cv::putText(frameFace, label, Point(it->at(0), it->at(1) -15), cv::FONT_HERSHEY_SIMPLEX, 0.7, Scalar(0, 255, 255));
+                string label = gender + ", " + age; // label
+                cv::putText(frameFace, label, Point(it->at(0), it->at(1) -15), cv::FONT_HERSHEY_SIMPLEX, 0.7, Scalar(0, 255, 255));
+            }
         }
         imwrite("out.jpg",frameFace);
     }
